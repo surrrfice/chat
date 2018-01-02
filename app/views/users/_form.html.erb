@@ -1,0 +1,40 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %><!-- エラーメッセージの表示-->
+
+<div class="field">
+      <%= form.label :name %>
+    <!--<label for="user_name">Name</label> というhtmlの作成-->
+      <%= form.text_field :name, id: :user_name %>
+    </div>
+
+<div class="field">
+      <%= form.label :email %>
+      <%= form.text_field :email, id: :user_email %>
+      <!--input type="text" name="user[name]" id="user_name">　というhtmlの作成-->
+    </div>
+
+  <!-- has_secure_password method追加に伴い入力フォーム作成-->
+<div class="field">
+   <%= form.label :password %>
+   <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+   <%= form.label :password_confirmation %>
+   <%= form.password_field :password_confirmation %>
+  </div>
+
+<div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
